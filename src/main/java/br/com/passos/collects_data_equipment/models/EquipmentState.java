@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "equipment")
-public class Equipment {
+@Table(name = "equipment_state")
+public class EquipmentState {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,11 +14,9 @@ public class Equipment {
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "equipment_model_id")
-    private EquipmentModel equipmentModel;
+    private String color;
 
-    @OneToMany(mappedBy = "equipment")
+    @OneToMany(mappedBy = "equipmentState")
     private List<EquipmentStateHistory> equipmentStateHistories;
 
     public Long getId() {
@@ -37,12 +35,12 @@ public class Equipment {
         this.name = name;
     }
 
-    public EquipmentModel getEquipmentModel() {
-        return equipmentModel;
+    public String getColor() {
+        return color;
     }
 
-    public void setEquipmentModel(EquipmentModel equipmentModel) {
-        this.equipmentModel = equipmentModel;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public List<EquipmentStateHistory> getEquipmentStateHistories() {
@@ -57,8 +55,8 @@ public class Equipment {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Equipment equipment = (Equipment) o;
-        return Objects.equals(id, equipment.id);
+        EquipmentState that = (EquipmentState) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override
