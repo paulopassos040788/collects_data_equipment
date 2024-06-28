@@ -21,6 +21,9 @@ public class Equipment {
     @OneToMany(mappedBy = "equipment")
     private List<EquipmentStateHistory> equipmentStateHistories;
 
+    @OneToMany(mappedBy = "equipment")
+    private List<EquipmentPositionHistory> equipmentPositionHistories;
+
     public Long getId() {
         return id;
     }
@@ -51,6 +54,14 @@ public class Equipment {
 
     public void setEquipmentStateHistories(List<EquipmentStateHistory> equipmentStateHistories) {
         this.equipmentStateHistories = equipmentStateHistories;
+    }
+
+    public List<EquipmentPositionHistory> getEquipmentPositionHistories() {
+        return equipmentPositionHistories;
+    }
+
+    public void setEquipmentPositionHistories(List<EquipmentPositionHistory> equipmentPositionHistories) {
+        this.equipmentPositionHistories = equipmentPositionHistories;
     }
 
     @Override
