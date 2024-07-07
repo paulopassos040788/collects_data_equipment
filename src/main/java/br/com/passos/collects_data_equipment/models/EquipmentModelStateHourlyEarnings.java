@@ -20,7 +20,7 @@ public class EquipmentModelStateHourlyEarnings {
     @JoinColumn(name = "equipment_state_id")
     private EquipmentState equipmentState;
 
-    private BigDecimal value;
+    private BigDecimal amount;
 
     public Long getId() {
         return id;
@@ -46,12 +46,12 @@ public class EquipmentModelStateHourlyEarnings {
         this.equipmentState = equipmentState;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     @Override
