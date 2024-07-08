@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -35,6 +34,19 @@ public class EquipmentModelController {
         List<EquipmentModel> equipmentModels = this.equipmentModelService.findByName(name);
         List<EquipmentModelCreateDTO> equipmentModelDto = equipmentModels.stream().map(equipmentModelMapper::equipmentToModelDto).toList();
         return ResponseEntity.ok().body(equipmentModelDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
+        this.equipmentModelService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id, @RequestBody EquipmentModelCreateDTO equipmentModelDto) {
+        EquipmentModel equipmentModel = equipmentModelMapper.equipmentDtoToModel(equipmentModelDto);
+        this.equipmentModelService.update(id, equipmentModel);
+        return ResponseEntity.ok().build();
     }
 
 }

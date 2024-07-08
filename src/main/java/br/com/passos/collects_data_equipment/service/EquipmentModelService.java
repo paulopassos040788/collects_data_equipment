@@ -5,6 +5,7 @@ import br.com.passos.collects_data_equipment.repository.EquipmentModelRepository
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EquipmentModelService {
@@ -23,6 +24,23 @@ public class EquipmentModelService {
     @Transactional
     public List<EquipmentModel> findByName(String name) {
         return equipmentModelRepository.findByName(name);
+    }
+
+    public void delete(Long id) {
+        Optional<EquipmentModel> equipmentModel = Optional.ofNullable(this.equipmentModelRepository.findById(id).orElseThrow(() -> new RuntimeException("Modelo nao encontrado")));
+        equipmentModelRepository.deleteById(equipmentModel.get().getId());
+    }
+
+    public void update(Long id, EquipmentModel equipmentModel) {
+        Optional<EquipmentModel> equipmentModelOptional = equipmentModelRepository.findById(id);
+
+        if (equipmentModelOptional.isEmpty()) {
+            throw new RuntimeException("Modelo nao encontrado");
+        }
+
+        EquipmentModel existingEquipmentModel  = equipmentModelOptional.get();
+        existingEquipmentModel.setName(equipmentModel.getName());
+        this.equipmentModelRepository.save(existingEquipmentModel);
     }
 
 }
