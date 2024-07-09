@@ -1,7 +1,7 @@
 package br.com.passos.collects_data_equipment.controller;
 
 import br.com.passos.collects_data_equipment.models.EquipmentModel;
-import br.com.passos.collects_data_equipment.models.dtos.EquipmentModelCreateDTO;
+import br.com.passos.collects_data_equipment.models.dtos.EquipmentModelDTO;
 import br.com.passos.collects_data_equipment.models.dtos.EquipmentModelMapper;
 import br.com.passos.collects_data_equipment.service.EquipmentModelService;
 import jakarta.validation.Valid;
@@ -23,16 +23,16 @@ public class EquipmentModelController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createEquipmentModel(@Valid @RequestBody EquipmentModelCreateDTO equipmentModelDto) {
+    public ResponseEntity<Void> createEquipmentModel(@Valid @RequestBody EquipmentModelDTO equipmentModelDto) {
         EquipmentModel equipmentModel = equipmentModelMapper.equipmentDtoToModel(equipmentModelDto);
         this.equipmentModelService.save(equipmentModel);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<EquipmentModelCreateDTO>> findByNameEquipmentModel(@PathVariable("name") String name) {
+    public ResponseEntity<List<EquipmentModelDTO>> findByNameEquipmentModel(@PathVariable("name") String name) {
         List<EquipmentModel> equipmentModels = this.equipmentModelService.findByName(name);
-        List<EquipmentModelCreateDTO> equipmentModelDto = equipmentModels.stream().map(equipmentModelMapper::equipmentToModelDto).toList();
+        List<EquipmentModelDTO> equipmentModelDto = equipmentModels.stream().map(equipmentModelMapper::equipmentToModelDto).toList();
         return ResponseEntity.ok().body(equipmentModelDto);
     }
 
@@ -43,7 +43,7 @@ public class EquipmentModelController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id, @RequestBody EquipmentModelCreateDTO equipmentModelDto) {
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id, @RequestBody EquipmentModelDTO equipmentModelDto) {
         EquipmentModel equipmentModel = equipmentModelMapper.equipmentDtoToModel(equipmentModelDto);
         this.equipmentModelService.update(id, equipmentModel);
         return ResponseEntity.ok().build();

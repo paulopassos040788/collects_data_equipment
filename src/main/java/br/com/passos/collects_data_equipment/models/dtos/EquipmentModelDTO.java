@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class EquipmentModelCreateDTO {
+public class EquipmentModelDTO {
 
     private Long id;
 
