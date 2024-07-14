@@ -9,8 +9,8 @@ public interface EquipmentModelMapper {
 
     EquipmentModelMapper INSTANCE = Mappers.getMapper(EquipmentModelMapper.class);
 
-    EquipmentModelCreateDTO equipmentToModelDto(EquipmentModel equipmentModel);
+    EquipmentModelDTO equipmentToModelDto(EquipmentModel equipmentModel);
 
-    EquipmentModel equipmentDtoToModel(EquipmentModelCreateDTO equipmentModelCreateDTO);
+    EquipmentModel equipmentDtoToModel(EquipmentModelDTO equipmentModelCreateDTO);
 
 }
