@@ -10,7 +10,6 @@ public class EquipmentDTO {
     @NotEmpty
     private String name;
 
-    @NotEmpty
     private EquipmentModel equipmentModel;
 
     public Long getId() {
@@ -29,11 +28,11 @@ public class EquipmentDTO {
         this.name = name;
     }
 
-    public @NotEmpty EquipmentModel getEquipmentModel() {
+    public EquipmentModel getEquipmentModel() {
         return equipmentModel;
     }
 
-    public void setEquipmentModel(@NotEmpty EquipmentModel equipmentModel) {
+    public void setEquipmentModel(EquipmentModel equipmentModel) {
         this.equipmentModel = equipmentModel;
     }
 
