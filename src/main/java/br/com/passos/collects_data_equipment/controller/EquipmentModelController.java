@@ -3,7 +3,7 @@ package br.com.passos.collects_data_equipment.controller;
 import br.com.passos.collects_data_equipment.controller.exception.ErrorMessage;
 import br.com.passos.collects_data_equipment.models.EquipmentModel;
 import br.com.passos.collects_data_equipment.models.dtos.EquipmentModelDTO;
-import br.com.passos.collects_data_equipment.models.dtos.EquipmentModelMapper;
+import br.com.passos.collects_data_equipment.models.dtos.ModelMapper;
 import br.com.passos.collects_data_equipment.service.EquipmentModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -21,7 +21,7 @@ public class EquipmentModelController {
 
     private final EquipmentModelService equipmentModelService;
 
-    private final EquipmentModelMapper equipmentModelMapper = EquipmentModelMapper.INSTANCE;
+    private final ModelMapper equipmentModelMapper = ModelMapper.INSTANCE;
 
     public EquipmentModelController(EquipmentModelService equipmentModelService) {
         this.equipmentModelService = equipmentModelService;
