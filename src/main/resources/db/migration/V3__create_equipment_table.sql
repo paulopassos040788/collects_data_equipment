@@ -1,0 +1,1 @@
+CREATE TABLE equipment (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, equipment_model_id INTEGER REFERENCES equipment_model(id));
