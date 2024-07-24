@@ -1,5 +1,6 @@
 package br.com.passos.collects_data_equipment.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class EquipmentModel {
     private String name;
 
     @OneToMany(mappedBy = "equipmentModel")
+    @JsonIgnore
     private List<Equipment> equipment;
 
     public Long getId() {
