@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class EquipmentModelService {
 
     private final EquipmentModelRepository equipmentModelRepository;
@@ -17,12 +18,10 @@ public class EquipmentModelService {
         this.equipmentModelRepository = equipmentModelRepository;
     }
 
-    @Transactional
     public void save(EquipmentModel equipmentModel) {
         equipmentModelRepository.save(equipmentModel);
     }
 
-    @Transactional
     public List<EquipmentModel> findByName(String name) {
         return equipmentModelRepository.findByName(name);
     }
