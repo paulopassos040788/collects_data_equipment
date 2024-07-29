@@ -46,4 +46,29 @@ public class EquipmentController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(equipmentDTO);
     }
 
+    @Operation(summary = "Deletar equipamento", description = "Recurso para deletar equipamento pelo seu ID de identificação ",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = ""),
+                    @ApiResponse(responseCode = "404", description = "Equipamento não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
+        this.equipmentService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "Atualizar equipamento", description = "Recurso para atualização de equipamento pelo seu ID de identificação ",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = ""),
+                    @ApiResponse(responseCode = "404", description = "Equipamento não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            })
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id, @RequestBody EquipmentDTO equipmentDto) {
+        Equipment equipmentModel = equipmentMapper.equipmentDtoTo(equipmentDto);
+        this.equipmentService.update(id, equipmentModel);
+        return ResponseEntity.ok().build();
+    }
+
 }
