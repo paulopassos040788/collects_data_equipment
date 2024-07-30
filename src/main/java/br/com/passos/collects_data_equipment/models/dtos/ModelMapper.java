@@ -2,6 +2,7 @@ package br.com.passos.collects_data_equipment.models.dtos;
 
 import br.com.passos.collects_data_equipment.models.Equipment;
 import br.com.passos.collects_data_equipment.models.EquipmentModel;
+import br.com.passos.collects_data_equipment.models.EquipmentState;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -17,5 +18,9 @@ public interface ModelMapper {
     EquipmentDTO equipmentToDto(Equipment equipment);
 
     Equipment equipmentDtoTo(EquipmentDTO equipmentDTO);
+
+    EquipmentState equipmentStateDtoTo(EquipmentStateDTO equipmentStateDTO);
+
+    EquipmentStateDTO equipmentStateToDto(EquipmentState equipmentState);
 
 }
