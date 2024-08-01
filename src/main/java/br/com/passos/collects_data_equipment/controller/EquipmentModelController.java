@@ -66,7 +66,7 @@ public class EquipmentModelController {
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
             })
     @PutMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id, @RequestBody EquipmentModelDTO equipmentModelDto) {
+    public ResponseEntity<Void> updateById(@PathVariable("id") Long id, @RequestBody EquipmentModelDTO equipmentModelDto) {
         EquipmentModel equipmentModel = equipmentModelMapper.equipmentDtoToModel(equipmentModelDto);
         this.equipmentModelService.update(id, equipmentModel);
         return ResponseEntity.ok().build();

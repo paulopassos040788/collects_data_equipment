@@ -1,7 +1,9 @@
 package br.com.passos.collects_data_equipment.controller;
 
 import br.com.passos.collects_data_equipment.controller.exception.ErrorMessage;
+import br.com.passos.collects_data_equipment.models.EquipmentModel;
 import br.com.passos.collects_data_equipment.models.EquipmentState;
+import br.com.passos.collects_data_equipment.models.dtos.EquipmentModelDTO;
 import br.com.passos.collects_data_equipment.models.dtos.EquipmentStateDTO;
 import br.com.passos.collects_data_equipment.models.dtos.ModelMapper;
 import br.com.passos.collects_data_equipment.service.EquipmentStateService;
@@ -61,6 +63,19 @@ public class EquipmentStateController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
         this.equipmentStateService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "Atualizar estado dos equipamentos", description = "Recurso para atualização os estados de equipamentos pelo seu ID de identificação ",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = ""),
+                    @ApiResponse(responseCode = "404", description = "Estado de equipamentos não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            })
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateById(@PathVariable("id") Long id, @RequestBody EquipmentStateDTO equipmentStateDTO) {
+        EquipmentState equipmentState = equipmentStateMapper.equipmentStateDtoTo(equipmentStateDTO);
+        this.equipmentStateService.update(id, equipmentState);
         return ResponseEntity.ok().build();
     }
 
