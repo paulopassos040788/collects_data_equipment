@@ -52,4 +52,16 @@ public class EquipmentStateController {
         return ResponseEntity.ok().body(map);
     }
 
+    @Operation(summary = "Deletar tipo estado dos equipamentos", description = "Recurso para deletar os tipos de estados dos equipamentos, pelo seu ID de identificação ",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = ""),
+                    @ApiResponse(responseCode = "404", description = "Estado de equipamentos não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
+        this.equipmentStateService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
 }
